@@ -1,0 +1,46 @@
+<%= form_for @post, html: { multipart: true } do |f| %>
+  <% if @post.errors.any? %>
+    <div id="errors">
+      <h2><%= pluralize(@post.errors.count, "error") %> prevented this post from saving</h2>
+      <ul>
+        <% @post.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+ <p>
+   <%= f.label :title %></br>
+   <%= f.text_field :title %>
+ </p>
+
+ <p>
+   <%= f.label :Posted_by %></br>
+   <%= f.text_field :name %>
+ </p>
+
+ <p>
+   <%= f.label :description %></br>
+   <%= f.cktext_area :body %>
+ </p>
+
+ <p>
+   <%= f.label :published_on %></br>
+   <%= f.text_field :published_on %> 
+ </p>
+
+ <p>
+   <%= f.label :image %></br>
+   <%= f.file_field :image %>
+ </p>
+
+ <p>
+    <%= f.label :Category %></br>
+    <%=  f.collection_select :list_id, List.all, :id, :name %>  
+ </p>
+  
+ <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+

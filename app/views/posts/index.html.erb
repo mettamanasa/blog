@@ -1,0 +1,24 @@
+<% if @posts.present? %>
+    <% @posts.each do |post| %>
+		<div class="post">
+		    <div id= "body">
+				<div id="div_i_0">
+		            <div id="div_i_1" >
+						 <%= image_tag post.image.url(:thumb) %>
+					</div>
+					<div id="div_i_2">
+						<h2 class="title"><%= link_to post.title, post%></h2></br>
+						<p style="display:inline" class = "title" ><%= truncate(strip_tags(post.body),length: 90) %></p>
+					    <h6 style="display:inline" class = "title" ><%= link_to "Read More" , post %>	</h6></p>
+						<p class="date"><h2>Published On</h2><%= post.published_on.strftime("%B, %d, %Y")%></p>
+						<p><h2>Posted By</h2><%= post.name %></p>
+		                <p class="date"><%= time_ago_in_words(post.created_at) %> Ago</p>
+		            </div>
+			    </div>
+		    </div>
+		</div>
+	<% end %>
+<% else %>
+    <h1 align="center">No New posts!</h1>
+<% end %>
+<%= will_paginate @posts, :class => "style"%>
